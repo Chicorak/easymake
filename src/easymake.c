@@ -315,6 +315,14 @@ int main(int argc, char *argv[])
     {
       printf("easymake v%.1f - by undersquire\n", VERSION);
     }
+    else if(!strcmp(argv[1], "-help"
+    {
+      printf("usage: \n -version: shows current version \n -help: This page \n -wiki: link to wiki \n); 
+    }
+    else if(!strcmp(argv[1], "-wiki"
+    {
+      printf("Not currently avaliable"); //@TODO: add wiki page
+    }
     else
     {
       char *buf = easymake_read_file(argv[1]);
