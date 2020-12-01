@@ -206,6 +206,38 @@ BuildOptions easymake_build_options(char *buf)
           boptions.compiler_options_count = array->length;
         }
       }
+      else if(!strcmp(str->string, "mode"))
+      {
+        struct json_value_s *val = key->value;
+        
+        if(val->type == json_type_array)
+        {
+          struct json_array_s *array = (struct json_array_s *)val->payload;
+          
+          char **mode = (char **)malloc(sizeof(char *) * array->length);
+          
+          struct json_array_element_s *arrel = array->start;
+          
+          int i = 0;
+          while(arrel != NULL)
+          {
+            struct json_value_s *arrval = arrel->value;
+            
+            if(arrval->type == json_type_string)
+            {
+              struct json_string_s *arrstr = (struct json_string_s *)arrval->payload;
+              mode[i] = (char *)arrstr->string;
+            }
+            
+            if(arrel->next == NULL) break;
+            
+            i++;
+            arrel = arrel->next;
+          }
+          
+          boptions.mode = (const char **)mode;
+          boptions.mode_count = array->length;
+        }
       
       key = key->next;
     }
@@ -221,7 +253,7 @@ BuildOptions easymake_build_options(char *buf)
 
 void easymake_build_project(BuildOptions *boptions)
 {
-  printf("easymake: building project \'%s\' using compiler \'%s\'\n", boptions->project, boptions->compiler);
+  printf("easymake: building project \'%s\' using compiler \'%s\'\n", boptions->project, boptions->compiler, boptions->mode);
   
   char command[256];
   char *temp = "";
@@ -298,6 +330,20 @@ void easymake_build_project(BuildOptions *boptions)
     free(temp);
     
     temp = concat(command, (boptions->compiler_options)[i]);
+    strcpy(command, temp);
+    free(temp);
+  }
+  if(boptions->mode == 7)
+  for(i = 0; i < boptions->mode_count; i++)
+  {
+    temp = concat(command, " -o3 ");
+    strcpy(command, temp);
+    free(temp);
+  }
+  if(boptions->mode == 5)
+  for(i = 0; i < boptions->mode_count; i++)
+  {
+    temp = concat(command, " -Wall ");
     strcpy(command, temp);
     free(temp);
   }
