@@ -315,6 +315,14 @@ int main(int argc, char *argv[])
     {
       printf("easymake v%.1f - by undersquire\n", VERSION);
     }
+    else if(!strcmp(argv[1], "-help"
+    {
+      printf("usage: \n -version: shows current version \n -help: This page \n -Docs: how to use \n); 
+    }
+    else if(!strcmp(argv[1], "-Docs"
+    {
+      printf("\nDocs:\n\nHow to run Easy Make !\n\neasymake FileName.ezmk\n\nOr just easymake if you have a build.ezmk file \n\n\n\nMaking a Easy Make file\n\n\nName your Project!\n\"project\": \"my_project\"\n\n\nNext specify your compiler.\n\"compiler\":\"gcc\"\n\n\nNow place the output!\n\"output\": \"bin/a.out\"\n\n\nAdd all your project sources!\n\"sources\": [\"some/src/*.c,some/src/specific.c\"]\n\n\nIf you have any Includes add them!\n\"includes\": [\"some/directory/all/files/in/here/*.h\",\"some/specific/file.h\"]\n\n\nInclude any libaries\n\"libraries \": [ \"libsomething.a\", \"libidk.so\", \"etc.dll\" ]\n\n\nAdd any compiler flags here!\n\"compiler_options\": [\"-s\",\"-O3\"]\n\n\n\n\nNote: make sure to enclose the entire thing in a bracket \n"); //@TODO: add wiki page link instead
+    }
     else
     {
       char *buf = easymake_read_file(argv[1]);
