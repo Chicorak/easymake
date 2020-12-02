@@ -35,9 +35,6 @@ char *easymake_read_file(char *file_path)
   FILE *file;
   file = fopen(file_path, "r");
 
-  
-  
-=======
 
 if(!file)
   {
@@ -289,7 +286,8 @@ void easymake_build_project(BuildOptions *boptions)
 }
 
 int main(int argc, char *argv[])
-{
+{ 
+
   if(argc > 1)
   {
     if(!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version"))
@@ -310,7 +308,7 @@ int main(int argc, char *argv[])
       easymake_build_project(&boptions);
     }
   }
-  else
+  else if (argv < 0)  
   {
 
     struct dirent **namelist;
@@ -324,24 +322,32 @@ int main(int argc, char *argv[])
     else {
       while (n--) 
       {         
+       if (n > 1)
+       {
+        printf("more than one file found! error");
+       }else
+       {
         char *buf = easymake_read_file(namelist[n]->d_name);
         if(!buf)
           return 0;
         BuildOptions boptions = easymake_build_options(buf);
         easymake_build_project(&boptions);
+       }
         free(namelist[n]);
       }
       free(namelist);
     }
   }
-=======
+    else
+    {
+
     char *buf = easymake_read_file("build.ezmk");
 
     if(!buf) return 0;
 
     BuildOptions boptions = easymake_build_options(buf);
     easymake_build_project(&boptions);
-  }
+    }
 
 
   return 0;
