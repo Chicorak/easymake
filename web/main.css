@@ -1,0 +1,60 @@
+body {background-color: black;}
+h1 {color: white;}
+p {color: white; font-size: large;}
+code {color: white;}
+header {
+    background-color: rgb(56, 56, 56);
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: rgb(0, 0, 0);
+  padding: 20px;
+  font-size: 20px;
+}
+code {
+  background: rgb(233, 236, 241);
+  padding: 5px;
+  color: black;
+}
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style the content */
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  background-color: #a8a8a8;
+  padding: 10px;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}

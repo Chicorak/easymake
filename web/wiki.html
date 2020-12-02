@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EasyMake - The better Cmake</title>
+</head>
+<link rel="stylesheet" href="main.css">
+<style>
+    h1 {color: black; font-size: 30px;}
+</style>
+<body">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <header>
+        <h1>Easymake wiki</h1>
+        <a href="index.html">Back</a>
+    </header>
+    <section>
+        <nav>
+            <ul>
+                <li><a href="#Compiling">Compiling</a></li>
+                <li><a href="#first">First build file</a></li>
+                <li><a href="#advancedbuild">More about build files</a></li>
+                <li><a href="#jsonval">What does every value on the build file do?</a></li>
+            </ul>
+        </nav>
+        
+        <article>
+            <h1 id="Compiling">Compiling it</h1>
+            <p>You will first have to get the source on the <a href="https://github.com/undersquire/easymake">Github repo</a></p>
+            <p>Now open a terminal and cd to the directory where you cloned/extracted the source code</p>
+            <p>Now to compile it follow these commands:</p>
+            <div style="background-color: gray;">
+                <p><strong>GCC:</strong></p>
+                <p><strong>gcc src/easymake.c -Iinclude -s -O3 -o easymake</strong></p>
+                <p><strong>TCC:</strong></p>
+                <p><strong>tcc src/easymake.c -Iinclude -O3 -o easymake</strong></p>
+                <p><strong>CLANG:</strong></p>
+                <p><strong>clang src/easymake.c -Iinclude -O3 -o easymake</strong></p>
+                <p><strong>MSVC:</strong></p>
+                <p><strong>cl src/easymake.c /I include /O2</strong></p>
+            </div>
+            <p>You may want to add easymake binary to PATH</p>
+            <h1 id="first">Your first build file</h1>
+            <p>Now that you have compiled easymake</p>
+            <p>its now time to get your first build file ready!</p>
+            <p>the build file extension is .ezmk, it is recommended to call your build file</p>
+            <p><strong>build.ezmk</strong></p>
+            <p>build files use json syntax wich makes them really easy</p>
+            <p>heres how a basic build file looks like this:</p>
+            <img src="src/code.png">
+            <p>heres a version that you can copy paste:</p>
+            <div style="background-color: gray;">
+                <p>{</p>
+                <p>  "project": "example",</p>
+                <p>  "compiler":"gcc",</p>
+                <p>  "output": "example",</p>
+                <p>  "includes": "include",</p>
+                <p>  "sources": "src/easymake.c",</p>
+                <p>  "compiler_options": ["-s","-O3"]</p>
+                <p>}</p>
+            </div>
+            <p>now you can do easymake on the folder where you put your build file</p>
+            <p>and it should compile</p>
+            <h1 id="advancedbuild">More about build files</h1>
+            <p>On includes, sources and compiler options you can also do a array</p>
+            <p>like you do on the compiler_options of the example</p>
+            <p>heres an example:</p>
+            <div style="background-color: gray;">
+                <p>{</p>
+                <p> "project": "example",</p>
+                <p> "compiler":"gcc",</p>
+                <p> "output": "yes",</p>
+                <p> "includes": ["include","/path/to/include/"],</p>
+                <p> "sources": ["src/*.c","/path/to/file/file.c"],</p>
+                <p> "compiler_options": ["-s","-O3"]</p>
+                <p>}</p>
+            </div>
+            <h1 id="jsonval">What does every value on the build file do?</h1>
+            <h2>project</h2>
+            <p>The project name duh.</p>
+            <p>Example:</p>
+            <div style="background-color: gray;">
+                <br>
+                <p>"project":"project name"</p>
+                <br>
+            </div>
+            <h2>compiler</h2>
+            <p>The compiler duh. We have not tested all the compilers yet</p>
+            <p>Example:</p>
+            <div style="background-color: gray;">
+                <br>
+                <p>"compiler":"g++"</p>
+                <br>
+            </div>
+            <h2>output</h2>
+            <p>The output executable name, can also be inside a folder.</p>
+            <p>Example:</p>
+            <div style="background-color: gray;">
+                <br>
+                <p>"output":"bin/output"</p>
+                <br>
+            </div>
+            <h2>includes</h2>
+            <p>The folders that are going to be included. Can be array or a single one.</p>
+            <p>Example:</p>
+            <div style="background-color: gray;">
+                <br>
+                <p>"includes":["include","/usr/include/","path/to/idk/includes/i/guess/"]</p>
+                <br>
+            </div>
+            <h2>sources</h2>
+            <p>The source files that can be compiled. Can be array or a single one.</p>
+            <p>You can also do a entire folder by doing <span style="background-color: gray;">folder/*.(filetype(.c/.cpp))</span></p>
+            <p>Example:</p>
+            <div style="background-color: gray;">
+                <br>
+                <p>"sources": ["src/main.cpp","src2/*.cpp"]</p>
+                <br>
+            </div>
+            <h2>compiler_options</h2>
+            <p>Extra flags you can give the compiler. Can be array or a single one.</p>
+            <p>Example:</p>
+            <div style="background-color: gray;">
+                <br>
+                <p>"compiler_options": "-Wall"</p>
+                <br>
+            </div>
+            <br><br><br><br><br><br><br>
+            <footer>
+                <a href="index.html">Back</a>
+            </footer>
+        </article>
+    </section>
+    </body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>EasyMake - The better Cmake</title>
+        <link rel="icon" href="src/git.png">
+    </head>
+    
+    <link rel="stylesheet" href="main.css">
+
+    <body">
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+
+        <div style="background-color: rgb(59, 54, 54); height: 10px;" >
+
+            <a href="https://github.com/undersquire/easymake"> <img src="src/git.png" height="40px" width="40px"></a>
+            
+            <a href="https://discord.gg/j2rRgZPCAk"><img src="src/discord.png" height="40px" width="40px"></a>
+            
+            <a href="https://github.com/undersquire/easymake/archive/main.zip"> <img src="src/download.png" height="40px" width="40px"></a>
+        
+            <a href="wiki.html"> <img src="src/wiki.png" height="40px" width="40px"></a>
+
+        </div>
+
+        <header>
+
+            <h2>EasyMake</h2>
+        
+        </header>
+        
+        <p><strong><i><i> simple, lightweight and open-sourced alternative to Make or CMake.</i></i></p></strong>
+
+        <div style="background-color:#666;padding: 15px; font-size: larger;">
+            <h2>What is EasyMake?</h2>
+
+            <p>EasyMake is a brand-new simple building system for all your C/C++ projects what makes it so great is it's <a href="#code">super simple syntax.</p></a>
+            
+            <p>And its incredible build time, it take seconds to build! along with its simple syntax its never been easier to make a build file.</p>
+
+            <p>along with this there is <a href="https://github.com/coolcoy12/EasyMakeBuilder">automatic builder</a> for thoses who just dont want type. Its that simple!</p>
+            
+            <br><br><br>
+
+            <h2>Download/Source Code</h2>
+        
+            <p>In order to install it you have to compile it, but dont worry its really easy!</p>
+        
+            <p>The source code can be found on github <a href="https://github.com/undersquire/easymake">here</p></a> <a href="https://github.com/undersquire/easymake/archive/main.zip"> <img src="src/download.png" height="50px" width="50px"></a>
+            
+            <br><br><br>
+
+            <h2>How To Compile</h2>
+
+            <p>Its really easy to compile! (this is assuming you have gcc, you can find instructions for other compiler at the github and the <a href="wiki.html">wiki</a>)</p>
+
+            <code> gcc src/easymake.c -Iinclude -s -O3 -o easymake </code>
+
+            <br><br><br><br>
+
+            <h2>Getting started</h2>
+        
+            <p>Here is an example of a simple EasyMake file.</p>
+        
+            <p>You can also check this wiki <a href="wiki.html">here</a></p>
+
+            <img src="src/code.png" id="code" >
+        
+        </div>
+
+        <p style="color: red;"><strong id="darktheme?"> </strong></p>
+        
+        <button onclick="darktheme()">Light theme</button>
+        
+        <script>
+            function darktheme() {
+                document.getElementById("darktheme?").innerHTML = "No";
+            }
+        </script>
+
+    </body>
+
+</html>
