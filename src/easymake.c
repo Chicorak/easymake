@@ -1,9 +1,27 @@
 #include "easymake.h"
 #include "jsmn.h"
 #include "utils.h"
+#include "dirent.h"
  
 float VERSION = 0.1;
+/* when return 1, scandir will put this dirent to the list */
+static int parse_ext(const struct dirent *dir)
+  {
+   if(!dir)
+  return 0;
 
+     if(dir->d_type == DT_REG) { /* only deal with regular file */
+         const char *ext = strrchr(dir->d_name,'.');
+         if((!ext) || (ext == dir->d_name))
+           return 0;
+         else {
+           if(strcmp(ext, ".ezmk") == 0)
+             return 1;
+         }
+     }
+
+     return 0;
+}
 int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
   if (tok->type == JSMN_STRING && (int)strlen(s) == tok->end - tok->start &&
       strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
@@ -16,6 +34,7 @@ char *easymake_read_file(char *file_path)
 {
   FILE *file;
   file = fopen(file_path, "r");
+  
   
   if(!file)
   {
@@ -290,13 +309,26 @@ int main(int argc, char *argv[])
   }
   else
   {
-    char *buf = easymake_read_file("build.ezmk");
-    
-    if(!buf) return 0;
-    
-    BuildOptions boptions = easymake_build_options(buf);
-    easymake_build_project(&boptions);
+    struct dirent **namelist;
+    int n;
+
+    n = scandir(".", &namelist, parse_ext, alphasort);
+    if (n < 0) {    
+      perror("scandir");
+      return 1;
+    }
+    else {
+      while (n--) 
+      {         
+        char *buf = easymake_read_file(namelist[n]->d_name);
+        if(!buf)
+          return 0;
+        BuildOptions boptions = easymake_build_options(buf);
+        easymake_build_project(&boptions);
+        free(namelist[n]);
+      }
+      free(namelist);
+    }
   }
-  
   return 0;
 }
